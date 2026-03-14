@@ -1,0 +1,34 @@
+.bar {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background-color: var(--color-gray-1);
+  border-radius: var(--border-radius);
+}
+
+.btn {
+  flex: 1;
+  height: 32px;
+  padding: 0 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-gray-4);
+  background-color: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--transition-duration);
+
+  &:hover:not(.isActive) {
+    color: var(--color-dark-1);
+    background-color: var(--color-gray-2);
+  }
+}
+
+.isActive {
+  color: var(--color-dark-1);
+  background-color: var(--color-white);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+  cursor: default;
+}

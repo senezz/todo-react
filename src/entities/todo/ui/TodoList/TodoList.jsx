@@ -1,36 +1,45 @@
-import { memo, useContext } from 'react'
-import { TodoItem, TasksContext } from '@/entities/todo'
+import { memo, useContext } from "react";
+import { TodoItem, TasksContext } from "@/entities/todo";
+import { FILTERS } from "@/shared/constants";
 
 const TodoList = (props) => {
-  const { styles } = props
+  const { styles } = props;
 
-  const {
-    tasks,
-    filteredTasks,
-  } = useContext(TasksContext)
+  const EMPTY_MESSAGES = {
+    [FILTERS.ALL]: "There are no tasks yet",
+    [FILTERS.ACTIVE]: "No active tasks",
+    [FILTERS.DONE]: "No completed tasks yet",
+  };
 
-  const hasTasks = tasks.length > 0
-  const isEmptyFilteredTasks = filteredTasks?.length === 0
+  const { tasks, filteredTasks, activeFilter } = useContext(TasksContext);
+
+  const hasTasks = tasks.length > 0;
+  const displayTasks = filteredTasks ?? tasks;
+  const isEmpty = displayTasks.length === 0;
 
   if (!hasTasks) {
-    return <div className={styles.emptyMessage}>There are no tasks yet</div>
+    return (
+      <div className={styles.emptyMessage}>{EMPTY_MESSAGES[FILTERS.ALL]}</div>
+    );
   }
 
-  if (hasTasks && isEmptyFilteredTasks) {
-    return <div className={styles.emptyMessage}>Tasks not found</div>
+  if (isEmpty) {
+    const message =
+      filteredTasks !== null
+        ? tasks.length > 0
+          ? EMPTY_MESSAGES[activeFilter]
+          : EMPTY_MESSAGES[FILTERS.ALL]
+        : EMPTY_MESSAGES[FILTERS.ALL];
+    return <div className={styles.emptyMessage}>{message}</div>;
   }
 
   return (
     <ul className={styles.list}>
-      {(filteredTasks ?? tasks).map((task) => (
-        <TodoItem
-          className={styles.item}
-          key={task.id}
-          {...task}
-        />
+      {displayTasks.map((task) => (
+        <TodoItem className={styles.item} key={task.id} {...task} />
       ))}
     </ul>
-  )
-}
+  );
+};
 
-export default memo(TodoList)
+export default memo(TodoList);
