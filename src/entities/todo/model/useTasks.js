@@ -32,7 +32,7 @@ const tasksReducer = (state, action) => {
     }
     case "EDIT": {
       return state.map((task) => {
-        return task.id === action.id ? { ...task, title: action.title } : task;
+        return task.id === action.id ? { ...task, ...action.updates } : task;
       });
     }
     default: {
@@ -75,9 +75,9 @@ const useTasks = () => {
       dispatch({ type: "TOGGLE_COMPLETE", id: taskId, isDone });
     });
   }, []);
-  const editTask = useCallback((taskId, title) => {
-    tasksAPI.edit(taskId, title).then(() => {
-      dispatch({ type: "EDIT", id: taskId, title });
+  const editTask = useCallback((taskId, updates) => {
+    tasksAPI.edit(taskId, updates).then(() => {
+      dispatch({ type: "EDIT", id: taskId, updates });
     });
   }, []);
 
@@ -91,7 +91,7 @@ const useTasks = () => {
       dispatch({ type: "ADD", task: addedTask });
       setNewTaskTitle("");
       setSearchQuery("");
-      newTaskInputRef.current.focus();
+      newTaskInputRef.current?.focus();
       setAppearingTaskId(addedTask.id);
       setTimeout(() => {
         setAppearingTaskId(null);
@@ -100,7 +100,7 @@ const useTasks = () => {
   }, []);
 
   useEffect(() => {
-    newTaskInputRef.current.focus();
+    newTaskInputRef.current?.focus();
 
     tasksAPI.getAll().then((serverTasks) => {
       dispatch({ type: "SET_ALL", tasks: serverTasks });

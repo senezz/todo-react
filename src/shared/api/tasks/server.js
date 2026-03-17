@@ -36,6 +36,14 @@ const serverAPI = {
       body: JSON.stringify({ isDone }),
     });
   },
+
+  edit: (id, updates) => {
+    return fetch(`${URL}/${id}`, {
+      method: "PATCH",
+      headers,
+      body: JSON.stringify(updates),
+    });
+  },
 };
 
 export default serverAPI;

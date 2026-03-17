@@ -65,6 +65,16 @@ const localAPI = {
 
     write(tasks);
   },
+
+  edit: async (id, updates) => {
+    await delay();
+
+    const tasks = read().map((task) => {
+      return task.id === id ? { ...task, ...updates } : task;
+    });
+
+    write(tasks);
+  },
 };
 
 export default localAPI;
