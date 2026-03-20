@@ -4,8 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To Do List</title>
-    <script type="module" crossorigin src="/todo-react/assets/index-8KOU-Jnf.js"></script>
-    <link rel="stylesheet" crossorigin href="/todo-react/assets/index-DnmYGD5y.css">
+    <script>
+      (function () {
+        var saved = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        var theme = saved || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+    <script type="module" crossorigin src="/todo-react/assets/index-W3E0EFG3.js"></script>
+    <link rel="stylesheet" crossorigin href="/todo-react/assets/index-Bo8orNED.css">
   </head>
   <body>
     <div id="root"></div>
