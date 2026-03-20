@@ -1,0 +1,35 @@
+.toggle {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  border: var(--border);
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  transition:
+    background-color var(--transition-duration),
+    border-color var(--transition-duration),
+    transform var(--transition-duration);
+
+  &:hover {
+    background-color: var(--color-hover-bg);
+    transform: rotate(20deg);
+  }
+
+  &:active {
+    scale: 0.95;
+  }
+}
+
+.isDark {
+  border-color: var(--color-gray-3);
+}
+
+.icon {
+  line-height: 1;
+  pointer-events: none;
+}

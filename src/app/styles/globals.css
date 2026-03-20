@@ -4,8 +4,12 @@ body {
   align-items: start;
   min-height: 100vh;
   padding: 100px 30px;
-  font-family: 'Inter', sans-serif;
-  background-color: var(--color-gray-1);
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  transition:
+    background-color var(--transition-duration),
+    color var(--transition-duration);
 }
 
 input,
@@ -15,7 +19,7 @@ button {
 }
 
 :focus-visible {
-  outline: 2px dashed var(--color-black);
+  outline: 2px dashed var(--color-dark-1);
   outline-offset: 4px;
   transition-duration: 0s !important;
 }

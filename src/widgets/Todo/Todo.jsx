@@ -5,6 +5,7 @@ import FilterTasksBar from "@/features/filter-tasks";
 import TodoInfo from "@/features/stats";
 import { TodoList } from "@/entities/todo";
 import Button from "@/shared/ui/Button";
+import ThemeToggle from "@/shared/ui/ThemeToggle";
 import { TasksContext } from "@/entities/todo";
 import styles from "./Todo.module.scss";
 
@@ -13,7 +14,10 @@ const Todo = () => {
 
   return (
     <div className={styles.todo}>
-      <h1 className={styles.title}>To Do List</h1>
+      <div className={styles.header}>
+        <h1 className={styles.title}>To Do List</h1>
+        <ThemeToggle />
+      </div>
       <AddTaskForm styles={styles} />
       <SearchTaskForm styles={styles} />
       <FilterTasksBar />

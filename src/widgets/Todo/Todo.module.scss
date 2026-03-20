@@ -6,10 +6,17 @@
   max-width: 404px;
   min-height: 429px;
   padding: 24px;
-  background-color: var(--color-white);
+  background-color: var(--bg-card);
   border: var(--border);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
+  transition: background-color var(--transition-duration);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .title {
@@ -17,11 +24,13 @@
   font-size: 24px;
   font-weight: 600;
   line-height: 1.2;
+  flex: 1;
 }
 
 .form {
   display: flex;
   column-gap: 16px;
+  align-items: flex-start;
 }
 
 .field {
