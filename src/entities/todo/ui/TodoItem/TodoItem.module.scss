@@ -7,7 +7,7 @@
   border-radius: var(--border-radius);
 
   &:hover {
-    background-color: var(--color-gray-1);
+    background-color: var(--color-hover-bg);
   }
 
   &.isDisappearing {
@@ -35,6 +35,41 @@
       }
     }
   }
+}
+
+/* Priority dot indicator */
+.priorityDot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-gray-3);
+  margin-left: 2px;
+}
+
+.priorityHigh .priorityDot {
+  background-color: var(--priority-high-color);
+}
+
+.priorityMedium .priorityDot {
+  background-color: var(--priority-medium-color);
+}
+
+.priorityLow .priorityDot {
+  background-color: var(--priority-low-color);
+}
+
+/* Priority left border accent */
+.priorityHigh {
+  border-left: 3px solid var(--priority-high-color);
+}
+
+.priorityMedium {
+  border-left: 3px solid var(--priority-medium-color);
+}
+
+.priorityLow {
+  border-left: 3px solid var(--priority-low-color);
 }
 
 .checkbox {

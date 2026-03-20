@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { TasksContext } from "@/entities/todo";
 import tasksAPI from "@/shared/api/tasks";
-import { BASE_URL } from "@/shared/constants";
+import { BASE_URL, PRIORITIES, PRIORITY_OPTIONS } from "@/shared/constants";
 import styles from "./TaskPage.module.scss";
 
 const navigateBack = () => {
@@ -21,6 +21,7 @@ const TaskPage = (props) => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [priority, setPriority] = useState(PRIORITIES.MEDIUM);
 
   useEffect(() => {
     tasksAPI
@@ -33,6 +34,7 @@ const TaskPage = (props) => {
         setTask(taskData);
         setTitle(taskData.title || "");
         setDescription(taskData.description || "");
+        setPriority(taskData.priority || PRIORITIES.MEDIUM);
         setHasError(false);
       })
       .catch(() => {
@@ -56,6 +58,10 @@ const TaskPage = (props) => {
 
     if (description.trim() !== (task.description || "")) {
       updates.description = description.trim();
+    }
+
+    if (priority !== (task.priority || PRIORITIES.MEDIUM)) {
+      updates.priority = priority;
     }
 
     if (Object.keys(updates).length > 0) {
@@ -102,6 +108,23 @@ const TaskPage = (props) => {
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Enter additional information"
           />
+        </div>
+
+        <div className={styles.fieldGroup}>
+          <span className={styles.label}>Priority</span>
+          <div className={styles.priorityGroup}>
+            {PRIORITY_OPTIONS.map((option) => (
+              <button
+                key={option.value}
+                type="button"
+                className={`${styles.priorityBtn} ${styles[`priority_${option.value}`]} ${priority === option.value ? styles.priorityBtnActive : ""}`}
+                onClick={() => setPriority(option.value)}
+                aria-pressed={priority === option.value}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className={styles.buttons}>

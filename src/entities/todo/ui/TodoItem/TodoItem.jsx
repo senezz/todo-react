@@ -3,8 +3,14 @@ import { TasksContext } from "@/entities/todo";
 import RouterLink from "@/shared/ui/RouterLink";
 import styles from "./TodoItem.module.scss";
 
+const priorityClassMap = {
+  high: styles.priorityHigh,
+  medium: styles.priorityMedium,
+  low: styles.priorityLow,
+};
+
 const TodoItem = (props) => {
-  const { className = "", id, title, isDone } = props;
+  const { className = "", id, title, isDone, priority } = props;
 
   const {
     firstIncompleteTaskRef,
@@ -15,16 +21,20 @@ const TodoItem = (props) => {
     appearingTaskId,
   } = useContext(TasksContext);
 
+  const priorityClass = priorityClassMap[priority] || "";
+
   return (
     <li
       className={`
         ${styles.todoItem} 
         ${className} 
+        ${priorityClass}
         ${disappearingTaskId === id ? styles.isDisappearing : ""}
         ${appearingTaskId === id ? styles.isAppearing : ""}
       `}
       ref={id === firstIncompleteTaskId ? firstIncompleteTaskRef : null}
     >
+      <span className={styles.priorityDot} aria-hidden="true" />
       <input
         className={styles.checkbox}
         id={id}

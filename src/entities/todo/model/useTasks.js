@@ -81,10 +81,11 @@ const useTasks = () => {
     });
   }, []);
 
-  const addTask = useCallback((title) => {
+  const addTask = useCallback((title, priority = "medium") => {
     const newTask = {
       title,
       isDone: false,
+      priority,
     };
 
     tasksAPI.add(newTask).then((addedTask) => {
