@@ -2,7 +2,7 @@
 
 A feature-rich task management application built with React 19, showcasing modern frontend development practices including custom routing, Context API state management, and a dual-mode backend (localStorage / REST API).
 
-🔗 **[Live Demo](senezz.github.io/todo-react/)**
+🔗 **[Live Demo](https://senezz.github.io/todo-react/)**
 
 ---
 
